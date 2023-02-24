@@ -19,9 +19,6 @@ typedef struct {
   uint8_t address;
 } ICM426_Dev_t;
 
-ICM426_Status_t ICM426_I2C_Probe(ICM426_Dev_t*);
-ICM426_Status_t ICM426_I2C_Read(ICM426_Dev_t*, uint8_t regAddr, uint8_t *data, uint8_t length);
-ICM426_Status_t ICM426_I2C_Write(ICM426_Dev_t*, uint8_t regAddr, uint8_t *data, uint8_t length);
 ICM426_Status_t ICM426_I2C_WriteByte(ICM426_Dev_t*, uint8_t regAddr, uint8_t byte);
 
 #endif /* DRIVERS_ICM_426_SRC_INCLUDE_ICM_I2C_DEV_H_ */

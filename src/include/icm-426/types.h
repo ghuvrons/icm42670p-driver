@@ -14,13 +14,19 @@ typedef struct {
   int16_t x;
   int16_t y;
   int16_t z;
-} Vector_t;
+} ICM426_RawVector_t;
+
+typedef struct {
+  float x;
+  float y;
+  float z;
+} ICM426_Vector_t;
 
 typedef enum {
   ICM426_OK,
   ICM426_ERROR,
-  ICM426_TIMEOUT,
   ICM426_DEV_BUSY,
+  ICM426_TIMEOUT,
 } ICM426_Status_t;
 
 

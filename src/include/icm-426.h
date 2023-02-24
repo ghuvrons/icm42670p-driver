@@ -52,13 +52,8 @@
 #define ICM426_STATUS_CONNECTED   0x01
 #define ICM426_STATUS_CALIBRATED  0x02
 
-#ifndef ICM426_RX_BUF_SZ
-#define ICM426_RX_BUF_SZ 64
-#endif
-
-#ifndef ICM426_TX_BUF_SZ
-#define ICM426_TX_BUF_SZ 64
-#endif
+#define ICM426_RX_BUF_SZ 24
+#define ICM426_TX_BUF_SZ 8
 
 typedef struct {
   /*
@@ -74,28 +69,36 @@ typedef struct {
 
 typedef struct {
   uint8_t status;
-  ICM426_Dev_t dev;
   ICM426_Config_t config;
+
+  struct {
+    ICM426_Status_t (*check)(void);
+    ICM426_Status_t (*read)(uint8_t regAddr, uint8_t *data, uint8_t length);
+    ICM426_Status_t (*write)(uint8_t regAddr, uint8_t *data, uint8_t length);
+  } i2c;
+
+  void (*delay)(uint32_t ms);
+
+  struct {
+    float accel;
+    float gyro;
+  } scaleFactor;
 
   // FIFO reader
   ICM426_FIFO_t FIFO;
-
-  uint8_t rxBuffer[ICM426_RX_BUF_SZ];
-  uint8_t txBuffer[ICM426_TX_BUF_SZ];
 } ICM426_HandlerTypeDef;
 
 
-ICM426_Status_t ICM426_Init(ICM426_HandlerTypeDef*, void *i2cDev_p, uint8_t devAddress);
-ICM426_Status_t ICM426_InitFIFO(ICM426_HandlerTypeDef*, uint8_t *buffer, uint16_t bufferSize);
-ICM426_Status_t ICM426_Start(ICM426_HandlerTypeDef*, ICM426_Config_t*);
-ICM426_Status_t ICM426_SetConfiguration(ICM426_HandlerTypeDef*, ICM426_Config_t*);
+ICM426_Status_t ICM426_Init(ICM426_HandlerTypeDef*, ICM426_Config_t*);
+ICM426_Status_t ICM426_Start(ICM426_HandlerTypeDef*);
+ICM426_Status_t ICM426_SetConfiguration(ICM426_HandlerTypeDef*);
 ICM426_Status_t ICM426_SwitchMode(ICM426_HandlerTypeDef*, uint8_t);
 ICM426_Status_t ICM426_CheckConnection(ICM426_HandlerTypeDef*);
 
-ICM426_Status_t ICM426_GetAccelerometer(ICM426_HandlerTypeDef*, Vector_t *accel);
-ICM426_Status_t ICM426_GetGyroscope(ICM426_HandlerTypeDef*, Vector_t *gyro);
+ICM426_Status_t ICM426_GetAccelerometer(ICM426_HandlerTypeDef*, ICM426_Vector_t *accel);
+ICM426_Status_t ICM426_GetGyroscope(ICM426_HandlerTypeDef*, ICM426_Vector_t *gyro);
 ICM426_Status_t ICM426_GetTemperature(ICM426_HandlerTypeDef*, int16_t *temp);
-ICM426_Status_t ICM426_Get6Axis(ICM426_HandlerTypeDef*, Vector_t *accel, Vector_t *gyro);
+ICM426_Status_t ICM426_Get6Axis(ICM426_HandlerTypeDef*, ICM426_Vector_t *accel, ICM426_Vector_t *gyro);
 
 // I2C
 

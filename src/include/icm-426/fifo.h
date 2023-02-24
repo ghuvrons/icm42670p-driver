@@ -42,43 +42,25 @@
 
 
 typedef struct {
-  Vector_t gyro;
-  Vector_t accel;
+  ICM426_Vector_t gyro;
+  ICM426_Vector_t accel;
   float temperature;
   uint16_t timestamp;
 } ICM426_Data_t;
 
 typedef struct {
   void          *icmh;
-  ICM426_Data_t *buffer;
-  uint16_t      bufferSize;
-  uint16_t      rPosData;
-  uint16_t      wPosData;
-  uint8_t       isWriteOverlap;
-  uint8_t       writeOffset;
-  uint16_t      lostData;
 
   struct {
     uint8_t dataRate; //  FDR_SEL in register FDR_CONFIG
     uint16_t feature_en;
   } config;
-
-  struct {
-    uint8_t header;
-    struct { uint8_t x[2]; uint8_t y[2]; uint8_t z[2];} accel;
-    struct { uint8_t x[2]; uint8_t y[2]; uint8_t z[2];} gyro;
-    uint8_t temperature[2];
-    uint8_t timestamp[2];
-    uint8_t ext[3];
-  } rawPacket;
 } ICM426_FIFO_t;
 
 
-ICM426_Status_t ICM426_FIFO_Init(ICM426_FIFO_t*, void *icmh, uint8_t *buffer, uint16_t bufferSize);
 ICM426_Status_t ICM426_FIFO_Start(ICM426_FIFO_t*);
-ICM426_Status_t ICM426_FIFO_FeatureEnable(ICM426_FIFO_t*, uint16_t features);
-ICM426_Status_t ICM426_FIFO_FeatureDisable(ICM426_FIFO_t*, uint16_t features);
-uint16_t        ICM426_FIFO_GetData(ICM426_FIFO_t*);
+uint16_t        ICM426_FIFO_GetFIFOCount(ICM426_FIFO_t*);
+uint16_t        ICM426_FIFO_GetData(ICM426_FIFO_t*, ICM426_Data_t*, uint16_t size);
 ICM426_Status_t ICM426_FIFO_Flush(ICM426_FIFO_t*);
 
 #endif /* DRIVERS_ICM_426_FIFO_H_ */

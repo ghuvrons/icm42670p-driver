@@ -8,120 +8,131 @@
 #ifndef DRIVERS_ICM_426_REGISTER_H_
 #define DRIVERS_ICM_426_REGISTER_H_
 
-#define ICM_R_MCLK_RDY          0x0000U
-#define ICM_R_DEVICE_CONFIG     0x0001U
-#define ICM_R_SIGNAL_PATH_RESET 0x0002U
-#define ICM_R_DRIVE_CONFIG1     0x0003U
-#define ICM_R_DRIVE_CONFIG2     0x0004U
-#define ICM_R_DRIVE_CONFIG3     0x0005U
-#define ICM_R_INT_CONFIG        0x0006U
-#define ICM_R_TEMP_DATA1        0x0009U
-#define ICM_R_TEMP_DATA0        0x000AU
-#define ICM_R_ACCEL_DATA_X1     0x000BU
-#define ICM_R_ACCEL_DATA_X0     0x000CU
-#define ICM_R_ACCEL_DATA_Y1     0x000DU
-#define ICM_R_ACCEL_DATA_Y0     0x000EU
-#define ICM_R_ACCEL_DATA_Z1     0x000FU
-#define ICM_R_ACCEL_DATA_Z0     0x0010U
-#define ICM_R_GYRO_DATA_X1      0x0011U
-#define ICM_R_GYRO_DATA_X0      0x0012U
-#define ICM_R_GYRO_DATA_Y1      0x0013U
-#define ICM_R_GYRO_DATA_Y0      0x0014U
-#define ICM_R_GYRO_DATA_Z1      0x0015U
-#define ICM_R_GYRO_DATA_Z0      0x0016U
-#define ICM_R_TMST_FSYNCH       0x0017U
-#define ICM_R_TMST_FSYNCL       0x0018U
-#define ICM_R_APEX_DATA4        0x001DU
-#define ICM_R_APEX_DATA5        0x001EU
-#define ICM_R_PWR_MGMT0         0x001FU
-#define ICM_R_GYRO_CONFIG0      0x0020U
-#define ICM_R_ACCEL_CONFIG0     0x0021U
-#define ICM_R_TEMP_CONFIG0      0x0022U
-#define ICM_R_GYRO_CONFIG1      0x0023U
-#define ICM_R_ACCEL_CONFIG1     0x0024U
-#define ICM_R_APEX_CONFIG0      0x0025U
-#define ICM_R_APEX_CONFIG1      0x0026U
-#define ICM_R_WOM_CONFIG        0x0027U
-#define ICM_R_FIFO_CONFIG1      0x0028U
-#define ICM_R_FIFO_CONFIG2      0x0029U
-#define ICM_R_FIFO_CONFIG3      0x002AU
-#define ICM_R_INT_SOURCE0       0x002BU
-#define ICM_R_INT_SOURCE1       0x002CU
-#define ICM_R_INT_SOURCE3       0x002DU
-#define ICM_R_INT_SOURCE4       0x002EU
-#define ICM_R_FIFO_LOST_PKT0    0x002FU
-#define ICM_R_FIFO_LOST_PKT1    0x0030U
-#define ICM_R_APEX_DATA0        0x0031U
-#define ICM_R_APEX_DATA1        0x0032U
-#define ICM_R_APEX_DATA2        0x0033U
-#define ICM_R_APEX_DATA3        0x0034U
-#define ICM_R_INTF_CONFIG0      0x0035U
-#define ICM_R_INTF_CONFIG1      0x0036U
-#define ICM_R_INT_STATUS_DRDY   0x0039U
-#define ICM_R_INT_STATUS        0x003AU
-#define ICM_R_INT_STATUS2       0x003BU
-#define ICM_R_INT_STATUS3       0x003CU
-#define ICM_R_FIFO_COUNTH       0x003DU
-#define ICM_R_FIFO_COUNTL       0x003EU
-#define ICM_R_FIFO_DATA         0x003FU
-#define ICM_R_WHO_AM_I          0x0075U
-#define ICM_R_BLK_SEL_W         0x0079U
-#define ICM_R_MADDR_W           0x007AU
-#define ICM_R_M_W               0x007BU
-#define ICM_R_BLK_SEL_R         0x007CU
-#define ICM_R_MADDR_R           0x007DU
-#define ICM_R_M_R               0x007EU
+#define ICM_REG_BANK_0 0x0000
+#define ICM_REG_BANK_1 0x0100
+#define ICM_REG_BANK_2 0x2900
+#define ICM_REG_BANK_3 0x5100
 
-#define ICM_R_TMST_CONFIG1      0x0100U
-#define ICM_R_FIFO_CONFIG5      0x0101U
-#define ICM_R_FIFO_CONFIG6      0x0102U
-#define ICM_R_FSYNC_CONFIG      0x0103U
-#define ICM_R_INT_CONFIG0       0x0104U
-#define ICM_R_INT_CONFIG1       0x0105U
-#define ICM_R_SENSOR_CONFIG3    0x0106U
-#define ICM_R_ST_CONFIG         0x0113U
-#define ICM_R_SELFTEST          0x0114U
-#define ICM_R_INTF_CONFIG6      0x0123U
-#define ICM_R_INTF_CONFIG10     0x0125U
-#define ICM_R_INTF_CONFIG7      0x0128U
-#define ICM_R_OTP_CONFIG        0x012BU
-#define ICM_R_INT_SOURCE6       0x012FU
-#define ICM_R_INT_SOURCE7       0x0130U
-#define ICM_R_INT_SOURCE8       0x0131U
-#define ICM_R_INT_SOURCE9       0x0132U
-#define ICM_R_INT_SOURCE10      0x0133U
-#define ICM_R_APEX_CONFIG2      0x0144U
-#define ICM_R_APEX_CONFIG3      0x0145U
-#define ICM_R_APEX_CONFIG4      0x0146U
-#define ICM_R_APEX_CONFIG5      0x0147U
-#define ICM_R_APEX_CONFIG9      0x0148U
-#define ICM_R_APEX_CONFIG10     0x0149U
-#define ICM_R_APEX_CONFIG11     0x014AU
-#define ICM_R_ACCEL_WOM_X_THR   0x014BU
-#define ICM_R_ACCEL_WOM_Y_THR   0x014CU
-#define ICM_R_ACCEL_WOM_Z_THR   0x014DU
-#define ICM_R_OFFSET_USER0      0x014EU
-#define ICM_R_OFFSET_USER1      0x014FU
-#define ICM_R_OFFSET_USER2      0x0150U
-#define ICM_R_OFFSET_USER3      0x0151U
-#define ICM_R_OFFSET_USER4      0x0152U
-#define ICM_R_OFFSET_USER5      0x0153U
-#define ICM_R_OFFSET_USER6      0x0154U
-#define ICM_R_OFFSET_USER7      0x0155U
-#define ICM_R_OFFSET_USER8      0x0156U
-#define ICM_R_ST_STATUS1        0x0163U
-#define ICM_R_ST_STATUS2        0x0164U
-#define ICM_R_FDR_CONFIG        0x0166U
-#define ICM_R_APEX_CONFIG12     0x0167U
 
-#define ICM_R_OTP_CTRL7         0x2906U
+#define ICM_R_MCLK_RDY          (0x00U | ICM_REG_BANK_0)
+#define ICM_R_DEVICE_CONFIG     (0x01U | ICM_REG_BANK_0)
+#define ICM_R_SIGNAL_PATH_RESET (0x02U | ICM_REG_BANK_0)
+#define ICM_R_DRIVE_CONFIG1     (0x03U | ICM_REG_BANK_0)
+#define ICM_R_DRIVE_CONFIG2     (0x04U | ICM_REG_BANK_0)
+#define ICM_R_DRIVE_CONFIG3     (0x05U | ICM_REG_BANK_0)
+#define ICM_R_INT_CONFIG        (0x06U | ICM_REG_BANK_0)
+#define ICM_R_TEMP_DATA1        (0x09U | ICM_REG_BANK_0)
+#define ICM_R_TEMP_DATA0        (0x0AU | ICM_REG_BANK_0)
+#define ICM_R_ACCEL_DATA_X1     (0x0BU | ICM_REG_BANK_0)
+#define ICM_R_ACCEL_DATA_X0     (0x0CU | ICM_REG_BANK_0)
+#define ICM_R_ACCEL_DATA_Y1     (0x0DU | ICM_REG_BANK_0)
+#define ICM_R_ACCEL_DATA_Y0     (0x0EU | ICM_REG_BANK_0)
+#define ICM_R_ACCEL_DATA_Z1     (0x0FU | ICM_REG_BANK_0)
+#define ICM_R_ACCEL_DATA_Z0     (0x10U | ICM_REG_BANK_0)
+#define ICM_R_GYRO_DATA_X1      (0x11U | ICM_REG_BANK_0)
+#define ICM_R_GYRO_DATA_X0      (0x12U | ICM_REG_BANK_0)
+#define ICM_R_GYRO_DATA_Y1      (0x13U | ICM_REG_BANK_0)
+#define ICM_R_GYRO_DATA_Y0      (0x14U | ICM_REG_BANK_0)
+#define ICM_R_GYRO_DATA_Z1      (0x15U | ICM_REG_BANK_0)
+#define ICM_R_GYRO_DATA_Z0      (0x16U | ICM_REG_BANK_0)
+#define ICM_R_TMST_FSYNCH       (0x17U | ICM_REG_BANK_0)
+#define ICM_R_TMST_FSYNCL       (0x18U | ICM_REG_BANK_0)
+#define ICM_R_APEX_DATA4        (0x1DU | ICM_REG_BANK_0)
+#define ICM_R_APEX_DATA5        (0x1EU | ICM_REG_BANK_0)
+#define ICM_R_PWR_MGMT0         (0x1FU | ICM_REG_BANK_0)
+#define ICM_R_GYRO_CONFIG0      (0x20U | ICM_REG_BANK_0)
+#define ICM_R_ACCEL_CONFIG0     (0x21U | ICM_REG_BANK_0)
+#define ICM_R_TEMP_CONFIG0      (0x22U | ICM_REG_BANK_0)
+#define ICM_R_GYRO_CONFIG1      (0x23U | ICM_REG_BANK_0)
+#define ICM_R_ACCEL_CONFIG1     (0x24U | ICM_REG_BANK_0)
+#define ICM_R_APEX_CONFIG0      (0x25U | ICM_REG_BANK_0)
+#define ICM_R_APEX_CONFIG1      (0x26U | ICM_REG_BANK_0)
+#define ICM_R_WOM_CONFIG        (0x27U | ICM_REG_BANK_0)
+#define ICM_R_FIFO_CONFIG1      (0x28U | ICM_REG_BANK_0)
+#define ICM_R_FIFO_CONFIG2      (0x29U | ICM_REG_BANK_0)
+#define ICM_R_FIFO_CONFIG3      (0x2AU | ICM_REG_BANK_0)
+#define ICM_R_INT_SOURCE0       (0x2BU | ICM_REG_BANK_0)
+#define ICM_R_INT_SOURCE1       (0x2CU | ICM_REG_BANK_0)
+#define ICM_R_INT_SOURCE3       (0x2DU | ICM_REG_BANK_0)
+#define ICM_R_INT_SOURCE4       (0x2EU | ICM_REG_BANK_0)
+#define ICM_R_FIFO_LOST_PKT0    (0x2FU | ICM_REG_BANK_0)
+#define ICM_R_FIFO_LOST_PKT1    (0x30U | ICM_REG_BANK_0)
+#define ICM_R_APEX_DATA0        (0x31U | ICM_REG_BANK_0)
+#define ICM_R_APEX_DATA1        (0x32U | ICM_REG_BANK_0)
+#define ICM_R_APEX_DATA2        (0x33U | ICM_REG_BANK_0)
+#define ICM_R_APEX_DATA3        (0x34U | ICM_REG_BANK_0)
 
-#define ICM_R_XA_ST_DATA        0x5100U
-#define ICM_R_YA_ST_DATA        0x5101U
-#define ICM_R_ZA_ST_DATA        0x5102U
-#define ICM_R_XG_ST_DATA        0x5103U
-#define ICM_R_YG_ST_DATA        0x5104U
-#define ICM_R_ZG_ST_DATA        0x5105U
+#define ICM_R_INTF_CONFIG0        (0x35U | ICM_REG_BANK_0)
+#define ICM_B_FIFO_COUNT_FORMAT       0x40
+#define ICM_B_FIFO_COUNT_BIG_ENDIAN   0x20
+#define ICM_B_SENSOR_DATA_BIG_ENDIAN  0x10
+
+#define ICM_R_INTF_CONFIG1      (0x36U | ICM_REG_BANK_0)
+#define ICM_R_INT_STATUS_DRDY   (0x39U | ICM_REG_BANK_0)
+#define ICM_R_INT_STATUS        (0x3AU | ICM_REG_BANK_0)
+#define ICM_R_INT_STATUS2       (0x3BU | ICM_REG_BANK_0)
+#define ICM_R_INT_STATUS3       (0x3CU | ICM_REG_BANK_0)
+#define ICM_R_FIFO_COUNTH       (0x3DU | ICM_REG_BANK_0)
+#define ICM_R_FIFO_COUNTL       (0x3EU | ICM_REG_BANK_0)
+#define ICM_R_FIFO_DATA         (0x3FU | ICM_REG_BANK_0)
+#define ICM_R_WHO_AM_I          (0x75U | ICM_REG_BANK_0)
+#define ICM_R_BLK_SEL_W         (0x79U | ICM_REG_BANK_0)
+#define ICM_R_MADDR_W           (0x7AU | ICM_REG_BANK_0)
+#define ICM_R_M_W               (0x7BU | ICM_REG_BANK_0)
+#define ICM_R_BLK_SEL_R         (0x7CU | ICM_REG_BANK_0)
+#define ICM_R_MADDR_R           (0x7DU | ICM_REG_BANK_0)
+#define ICM_R_M_R               (0x7EU | ICM_REG_BANK_0)
+
+#define ICM_R_TMST_CONFIG1      (0x00U | ICM_REG_BANK_1)
+#define ICM_R_FIFO_CONFIG5      (0x01U | ICM_REG_BANK_1)
+#define ICM_R_FIFO_CONFIG6      (0x02U | ICM_REG_BANK_1)
+#define ICM_R_FSYNC_CONFIG      (0x03U | ICM_REG_BANK_1)
+#define ICM_R_INT_CONFIG0       (0x04U | ICM_REG_BANK_1)
+#define ICM_R_INT_CONFIG1       (0x05U | ICM_REG_BANK_1)
+#define ICM_R_SENSOR_CONFIG3    (0x06U | ICM_REG_BANK_1)
+#define ICM_R_ST_CONFIG         (0x13U | ICM_REG_BANK_1)
+#define ICM_R_SELFTEST          (0x14U | ICM_REG_BANK_1)
+#define ICM_R_INTF_CONFIG6      (0x23U | ICM_REG_BANK_1)
+#define ICM_R_INTF_CONFIG10     (0x25U | ICM_REG_BANK_1)
+#define ICM_R_INTF_CONFIG7      (0x28U | ICM_REG_BANK_1)
+#define ICM_R_OTP_CONFIG        (0x2BU | ICM_REG_BANK_1)
+#define ICM_R_INT_SOURCE6       (0x2FU | ICM_REG_BANK_1)
+#define ICM_R_INT_SOURCE7       (0x30U | ICM_REG_BANK_1)
+#define ICM_R_INT_SOURCE8       (0x31U | ICM_REG_BANK_1)
+#define ICM_R_INT_SOURCE9       (0x32U | ICM_REG_BANK_1)
+#define ICM_R_INT_SOURCE10      (0x33U | ICM_REG_BANK_1)
+#define ICM_R_APEX_CONFIG2      (0x44U | ICM_REG_BANK_1)
+#define ICM_R_APEX_CONFIG3      (0x45U | ICM_REG_BANK_1)
+#define ICM_R_APEX_CONFIG4      (0x46U | ICM_REG_BANK_1)
+#define ICM_R_APEX_CONFIG5      (0x47U | ICM_REG_BANK_1)
+#define ICM_R_APEX_CONFIG9      (0x48U | ICM_REG_BANK_1)
+#define ICM_R_APEX_CONFIG10     (0x49U | ICM_REG_BANK_1)
+#define ICM_R_APEX_CONFIG11     (0x4AU | ICM_REG_BANK_1)
+#define ICM_R_ACCEL_WOM_X_THR   (0x4BU | ICM_REG_BANK_1)
+#define ICM_R_ACCEL_WOM_Y_THR   (0x4CU | ICM_REG_BANK_1)
+#define ICM_R_ACCEL_WOM_Z_THR   (0x4DU | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER0      (0x4EU | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER1      (0x4FU | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER2      (0x50U | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER3      (0x51U | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER4      (0x52U | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER5      (0x53U | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER6      (0x54U | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER7      (0x55U | ICM_REG_BANK_1)
+#define ICM_R_OFFSET_USER8      (0x56U | ICM_REG_BANK_1)
+#define ICM_R_ST_STATUS1        (0x63U | ICM_REG_BANK_1)
+#define ICM_R_ST_STATUS2        (0x64U | ICM_REG_BANK_1)
+#define ICM_R_FDR_CONFIG        (0x66U | ICM_REG_BANK_1)
+#define ICM_R_APEX_CONFIG12     (0x67U | ICM_REG_BANK_1)
+
+#define ICM_R_OTP_CTRL7         (0x06U | ICM_REG_BANK_2)
+
+#define ICM_R_XA_ST_DATA        (0x00U | ICM_REG_BANK_3)
+#define ICM_R_YA_ST_DATA        (0x01U | ICM_REG_BANK_3)
+#define ICM_R_ZA_ST_DATA        (0x02U | ICM_REG_BANK_3)
+#define ICM_R_XG_ST_DATA        (0x03U | ICM_REG_BANK_3)
+#define ICM_R_YG_ST_DATA        (0x04U | ICM_REG_BANK_3)
+#define ICM_R_ZG_ST_DATA        (0x05U | ICM_REG_BANK_3)
 
 
 #endif /* DRIVERS_ICM_426_REGISTER_H_ */

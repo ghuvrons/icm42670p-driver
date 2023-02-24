@@ -11,27 +11,64 @@
 #include "include/icm-426/utils.h"
 
 
-__attribute__((weak)) void ICM426_Delay(uint32_t ms) {}\
-
-
-ICM426_Status_t ICM426_MREG_ReadByte(ICM426_Dev_t *i2cDev_p, uint16_t regAddr, uint8_t *byte)
+ICM426_Status_t ICM426_REG_ReadByte(ICM426_HandlerTypeDef *icmh, uint16_t regAddr, uint8_t *byte)
 {
-  ICM426_I2C_WriteByte(i2cDev_p, ICM_R_BLK_SEL_R, (regAddr & 0xFE00) >> 8);
-  ICM426_I2C_WriteByte(i2cDev_p, ICM_R_MADDR_R, (regAddr & 0x00FF));
+  ICM426_Status_t status;
+  uint8_t isClockReady = 0;
+  uint8_t writeByte = 0;
+
+  // if MREG0
+  if ((regAddr & 0xFF00) == 0)
+    return icmh->i2c.read((uint8_t) (regAddr & 0x00FF), byte, 1);
+
+  status = icmh->i2c.read((uint8_t) ICM_R_MCLK_RDY, &isClockReady, 1);
+  if (status != ICM426_OK || (isClockReady&0x8) == 0) return status;
+
+  writeByte = (regAddr & 0xFE00) >> 8;
+  status = icmh->i2c.write((uint8_t) ICM_R_BLK_SEL_R, &writeByte, 1);
+  if (status != ICM426_OK) return status;
+
+  writeByte = (regAddr & 0x00FF);
+  status = icmh->i2c.write((uint8_t) ICM_R_MADDR_R, &writeByte, 1);
+  if (status != ICM426_OK) return status;
+
   ICM426_Delay(1);
-  ICM426_I2C_ReadByte(i2cDev_p, ICM_R_M_R, byte);
+
+  status = icmh->i2c.read((uint8_t) ICM_R_M_R, byte, 1);
+  if (status != ICM426_OK) return status;
+
   ICM426_Delay(1);
-  ICM426_I2C_WriteByte(i2cDev_p, ICM_R_BLK_SEL_R, 0x00);
+
   return ICM426_OK;
 }
 
 
-ICM426_Status_t ICM426_MREG_WriteByte(ICM426_Dev_t *i2cDev_p, uint16_t regAddr, uint8_t byte)
+ICM426_Status_t ICM426_REG_WriteByte(ICM426_HandlerTypeDef *icmh,
+                                     uint16_t regAddr, uint8_t byte)
 {
-  ICM426_I2C_WriteByte(i2cDev_p, ICM_R_BLK_SEL_W, (regAddr & 0xFE00) >> 8);
-  ICM426_I2C_WriteByte(i2cDev_p, ICM_R_MADDR_W, (regAddr & 0x00FF));
-  ICM426_I2C_WriteByte(i2cDev_p, ICM_R_M_W, byte);
+  ICM426_Status_t status;
+  uint8_t isClockReady = 0;
+  uint8_t writeByte = 0;
+
+  // if MREG0
+  if ((regAddr & 0xFF00) == 0)
+    return icmh->i2c.write((uint8_t) (regAddr & 0x00FF), &byte, 1);
+
+  status = icmh->i2c.read((uint8_t) ICM_R_MCLK_RDY, &isClockReady, 1);
+  if (status != ICM426_OK || (isClockReady&0x8) == 0) return status;
+
+  writeByte = (regAddr & 0xFE00) >> 8;
+  status = icmh->i2c.write((uint8_t) ICM_R_BLK_SEL_W, &writeByte, 1);
+  if (status != ICM426_OK) return status;
+
+  writeByte = (regAddr & 0x00FF);
+  status = icmh->i2c.write((uint8_t) ICM_R_MADDR_W, &writeByte, 1);
+  if (status != ICM426_OK) return status;
+
+  status = icmh->i2c.write((uint8_t) ICM_R_M_W, &byte, 1);
+  if (status != ICM426_OK) return status;
+
   ICM426_Delay(1);
-  ICM426_I2C_WriteByte(i2cDev_p, ICM_R_BLK_SEL_W, 0x00);
+
   return ICM426_OK;
 }
