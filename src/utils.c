@@ -6,7 +6,6 @@
  */
 
 #include "include/icm-426.h"
-#include "include/icm-i2c-dev.h"
 #include "include/icm-426/register.h"
 #include "include/icm-426/utils.h"
 
@@ -32,12 +31,12 @@ ICM426_Status_t ICM426_REG_ReadByte(ICM426_HandlerTypeDef *icmh, uint16_t regAdd
   status = icmh->i2c.write((uint8_t) ICM_R_MADDR_R, &writeByte, 1);
   if (status != ICM426_OK) return status;
 
-  ICM426_Delay(1);
+  icmh->delay(1);
 
   status = icmh->i2c.read((uint8_t) ICM_R_M_R, byte, 1);
   if (status != ICM426_OK) return status;
 
-  ICM426_Delay(1);
+  icmh->delay(1);
 
   return ICM426_OK;
 }
@@ -68,7 +67,7 @@ ICM426_Status_t ICM426_REG_WriteByte(ICM426_HandlerTypeDef *icmh,
   status = icmh->i2c.write((uint8_t) ICM_R_M_W, &byte, 1);
   if (status != ICM426_OK) return status;
 
-  ICM426_Delay(1);
+  icmh->delay(1);
 
   return ICM426_OK;
 }

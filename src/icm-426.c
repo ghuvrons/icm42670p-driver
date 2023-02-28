@@ -7,7 +7,6 @@
 
 #include "include/icm-426.h"
 #include "include/icm-426/utils.h"
-#include "include/icm-i2c-dev.h"
 #include <string.h>
 
 #define WHO_AM_I 0x67

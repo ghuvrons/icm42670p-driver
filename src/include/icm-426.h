@@ -11,7 +11,6 @@
 #include "icm-426/types.h"
 #include "icm-426/register.h"
 #include "icm-426/fifo.h"
-#include "icm-i2c-dev.h"
 
 #define ICM_SCALE_ACCEL_MASK    0x60
 #define ICM_SCALE_ACCEL_16g     0x00
